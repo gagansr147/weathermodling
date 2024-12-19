@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cmath>
+
+using namespace std;
+struct WeatherData {
+    string date;
+    double temperature;
+    double humidity;
+    double windSpeed;
+};
+
+double calculateAverageTemperature(const vector<WeatherData>& data) {
+    double sum = 0;
+    for (const auto& entry : data) {
+        sum += entry.temperature;
+    }
+    return sum / data.size();
+}
+
+void displayWeatherData(const vector<WeatherData>& data) {
+    cout << "Date        Temperature (°C)   Humidity (%)   Wind Speed (m/s)" << endl;
+    cout << "-----------------------------------------------------------" << endl;
+    for (const auto& entry : data) {
+        cout << entry.date << "       " << entry.temperature << "             "
+             << entry.humidity << "          " << entry.windSpeed << endl;
+    }
+}
+
+int main() {
+    vector<WeatherData> weatherData = {
+        {"2024-12-18", 22.5, 65.0, 3.4},
+        {"2024-12-19", 23.0, 70.0, 2.9},
+        {"2024-12-20", 21.8, 60.0, 4.1}
+    };
+
+    cout << "Weather Data Analysis" << endl;
+    cout << "---------------------" << endl;
+
+    displayWeatherData(weatherData);
+
+    double averageTemp = calculateAverageTemperature(weatherData);
+    cout << "\nAverage Temperature: " << averageTemp << " °C" << endl;
+
+    return 0;
+}
